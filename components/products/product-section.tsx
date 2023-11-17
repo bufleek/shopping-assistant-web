@@ -1,53 +1,26 @@
-const products = [
-  {
-    id: 1,
-    name: "Earthen Bottle",
-    href: "#",
-    price: "$48",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-    imageAlt:
-      "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-  },
-  {
-    id: 2,
-    name: "Nomad Tumbler",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-    imageAlt:
-      "Olive drab green insulated bottle with flared screw lid and flat top.",
-  },
-  {
-    id: 3,
-    name: "Focus Paper Refill",
-    href: "#",
-    price: "$89",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card.",
-  },
-  {
-    id: 4,
-    name: "Machined Mechanical Pencil",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top.",
-  },
-  // More products...
-];
+import { useState, useEffect } from "react";
+import { Platform } from "@/data/models/app_configs";
+import { Product } from "@/data/models/products";
+import { getProducts } from "@/data/models/products";
 
-export default function ProductSection() {
+export default function ProductSection({ platform, query, base_url}: { platform: Platform, query: string | null, base_url: string | null}) {
+  const [products, setProducts] = useState<Product[] | null[]>([]);
+
+  useEffect(() => {
+    if (query && base_url) {
+      getProducts({platform, query, base_url}).then((productList) => {
+        setProducts(productList.products);
+        console.log(productList.products.length);
+      });
+    }
+  }
+  , [query]);
+  
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-gray-800">Products</h2>
+          <h2 className="text-xl font-medium text-gray-800">{platform.name}</h2>
           <a href="#" className="text-gray-500 hover:text-gray-600">
             See All
           </a>
@@ -55,25 +28,25 @@ export default function ProductSection() {
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {[...products, ...products].map((product) => (
-            <a key={product.id} href={product.href} className="group" style={{
+            <a key={product?.link} href={product?.link} className="group" style={{
               display: "grid",
               gridTemplateRows: "1fr max-content",
             }}>
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                 <img
-                  src={product.imageSrc}
-                  alt={product.imageAlt}
+                  src={product?.image}
+                  alt={product?.name}
                   className="h-full w-full object-cover object-center group-hover:opacity-75"
                 />
               </div>
               <div>
-                <h3 className="mt-4 text-sm text-gray-700 truncate">
-                  {product.name}
+                <h3 className="mt-4 text-sm text-gray-700 truncate w-full">
+                  {product?.name}
                 </h3>
 
                 <div className="flex justify-between items-center mt-2">
                   <p className="mt-1 text-lg font-medium text-gray-900">
-                    {product.price}
+                    {product?.price?.currency}{product?.price?.amount}
                   </p>
                   <div className="flex space-x-1 text-sm align-center">
                     <svg
