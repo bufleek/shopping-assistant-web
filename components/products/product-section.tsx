@@ -14,7 +14,7 @@ export default function ProductSection({ platform, query, base_url}: { platform:
       });
     }
   }
-  , [query]);
+  , []);
   
   return (
     <div className="bg-white">

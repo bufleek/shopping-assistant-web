@@ -1,7 +1,6 @@
 import SearchInput from "@/components/products/search-input";
 import AppBar from "../components/app-bar/app-bar";
-
-const appDescription = process.env.APP_DESCRIPTION;
+import { metadata } from "./layout";
 
 export default function Home() {
   return (
@@ -18,7 +17,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center">
             Explore 10+ Stores, All at Once!
           </h2>
-          <p className="text-center text-lg mt-5">{appDescription}</p>
+          <p className="text-center text-lg mt-5">{metadata.description}</p>
           <div className="mt-10">
             <SearchInput />
           </div>

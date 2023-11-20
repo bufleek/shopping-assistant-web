@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Platform, fetchAppConfigs } from '@/data/models/app_configs'
+import { fetchAppConfigs } from '@/data/models/app_configs'
 import { AppConfigsProvider } from '../components/providers'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -16,7 +16,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const appConfigs = await fetchAppConfigs();
+  let appConfigs;
+  try {
+    appConfigs = await fetchAppConfigs();
+  } catch (error) {
+    console.log(error);
+  }
 
   return (
     <html lang="en">

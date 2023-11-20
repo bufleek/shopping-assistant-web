@@ -1,13 +1,14 @@
 "use client";
 
 import { useContext } from "react";
+import { useSearchParams } from "next/navigation";
 import AppBar from "@/components/app-bar/app-bar";
 import SearchInput from "@/components/products/search-input";
 import { AppConfigsContext } from "@/components/providers";
 import ProductSection from "@/components/products/product-section";
 
 export default function Browse() {
-  const query = new URLSearchParams(window.location.search).get("query");
+  const query = useSearchParams().get("query");
   const { appConfigs } = useContext(AppConfigsContext);
 
   return (
