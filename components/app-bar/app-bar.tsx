@@ -10,8 +10,8 @@ export default function AppBar() {
         <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="/">
-              <span className="sr-only">Workflow</span>
-              <Image src="/logo.svg" alt="Workflow" width={40} height={40} />
+              <span className="sr-only">Logo</span>
+              <Image src="/logo.svg" alt="Logo" width={40} height={40} />
             </a>
           </div>
           <nav className="hidden md:flex space-x-10">
