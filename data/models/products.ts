@@ -950,12 +950,11 @@ export async function getProducts({
   base_url: string;
 }): Promise<ProductList> {
   return new Promise((resolve, reject) => {
-    // const url = `${base_url}?exec=products&platform=${platform.key}&query=${query}`;
-    // fetch(url)
-    //   .then((response) => {
-    //     resolve(response.json());
-    //   })
-    //   .catch((error) => reject(error));
-    resolve(data);
+    const url = `${base_url}?exec=products&platform=${platform.key}&query=${query}`;
+    fetch(url)
+      .then((response) => {
+        resolve(response.json());
+      })
+      .catch((error) => reject(error.message));
   });
 }
