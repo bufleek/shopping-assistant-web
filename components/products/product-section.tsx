@@ -79,9 +79,9 @@ export default function ProductSection({
                 (product) => (
                   <Grid
                     item
-                    xs={12}
-                    sm={6}
-                    md={4}
+                    xs={6}
+                    sm={4}
+                    md={3}
                     lg={3}
                     xl={2}
                     key={isLoading ? product : product.link}
@@ -99,9 +99,9 @@ export default function ProductSection({
                         {isLoading ? (
                           <Skeleton height={200} width="100%" />
                         ) : (
-                          <Box mt={2}>
+                          <Stack mt={2}>
                             <img src={product.image} alt={product.name} />
-                          </Box>
+                          </Stack>
                         )}
                         <Box px={2} pb={2}>
                           {isLoading ? (
