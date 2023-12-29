@@ -31,8 +31,9 @@ export default function Browse() {
         direction="column"
         bgcolor="white"
         height="100%"
+        pb={4}
       >
-        {appConfigs?.data_source?.platforms?.map((platform: any) => {
+        {appConfigs && appConfigs.data_source.platforms.map((platform: any) => {
             return (
               <ProductSection
                 key={platform.key}
@@ -43,21 +44,6 @@ export default function Browse() {
             );
           })}
       </Stack>
-      {/* <div className="h-full bg-white">
-        <div className="py-1"></div>
-        <div className="flex flex-col gap-16 pb-20">
-          {appConfigs?.data_source?.platforms?.map((platform: any) => {
-            return (
-              <ProductSection
-                key={platform.key}
-                platform={platform}
-                query={query}
-                base_url={appConfigs.data_source.base_url}
-              />
-            );
-          })}
-        </div>
-      </div> */}
     </div>
   );
 }

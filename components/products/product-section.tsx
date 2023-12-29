@@ -10,13 +10,11 @@ import {
   Card,
   Container,
   Grid,
-  Icon,
   Link,
   Stack,
   Typography,
 } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function ProductSection({
   platform,
@@ -123,7 +121,7 @@ export default function ProductSection({
                               alignItems: "center",
                             }}
                           >
-                            <LazyLoadImage
+                            <img
                               src={product.image}
                               alt={product.name}
                               style={{
@@ -131,6 +129,7 @@ export default function ProductSection({
                                 width: "100%",
                                 height: "100%",
                               }}
+                              loading="lazy"
                             />
                           </Box>
                         )}
