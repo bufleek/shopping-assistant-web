@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import AppBar from "@/components/app-bar/app-bar";
 import { AppConfigsContext } from "@/components/providers";
 import ProductSection from "@/components/products/product-section";
+import { Box, Stack } from "@mui/material";
 
 export default function Browse() {
   const query = useSearchParams().get("query");
@@ -13,16 +14,37 @@ export default function Browse() {
   return (
     <div
       style={{
-        height: "100vh",
+        height: "100%",
         display: "grid",
         gridTemplateRows: "max-content 1fr",
       }}
     >
-      <AppBar />
+      <Box className="bg-start" sx={{
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+      }}>
+        <AppBar />
+      </Box>
 
-      <div className="h-full bg-white">
-        <div className="py-1 mt-4">
-        </div>
+      <Stack
+        direction="column"
+        bgcolor="white"
+        height="100%"
+      >
+        {appConfigs?.data_source?.platforms?.map((platform: any) => {
+            return (
+              <ProductSection
+                key={platform.key}
+                platform={platform}
+                query={query}
+                base_url={appConfigs.data_source.base_url}
+              />
+            );
+          })}
+      </Stack>
+      {/* <div className="h-full bg-white">
+        <div className="py-1"></div>
         <div className="flex flex-col gap-16 pb-20">
           {appConfigs?.data_source?.platforms?.map((platform: any) => {
             return (
@@ -35,7 +57,7 @@ export default function Browse() {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

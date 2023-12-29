@@ -16,6 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function ProductSection({
   platform,
@@ -52,26 +53,41 @@ export default function ProductSection({
 
   return (
     <>
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{
+          px: {
+            xs: 1,
+            sm: 2,
+          },
+        }}
+      >
         <Stack direction="column">
           <Stack direction="row" justifyContent="space-between" py={4}>
-            <Typography variant="h5" component="h2" px={0}>
+            <Typography
+              variant="h5"
+              component="h2"
+              px={0}
+              className="text-black"
+            >
               {platform.name}
             </Typography>
-            <Typography component="h2">See all</Typography>
+            {/* <Typography component="h2">See all</Typography> */}
           </Stack>
 
           {error ? (
             <Stack direction="column" alignItems="center" spacing={2}>
               <Typography component="h2">
-                Failed to load <span><Link href={platform.url} target="_blank" underline="always">{platform.name}</Link></span> products. 
-                </Typography>
+                Failed to load{" "}
+                <span>
+                  <Link href={platform.url} target="_blank" underline="always">
+                    {platform.name}
+                  </Link>
+                </span>{" "}
+                products.
+              </Typography>
               <Typography component="caption">Error: {error}</Typography>
-              <Button
-                onClick={handleGetProducts}
-              >
-                Retry
-              </Button>
+              <Button onClick={handleGetProducts}>Retry</Button>
             </Stack>
           ) : (
             <Grid container spacing={1}>
@@ -82,8 +98,7 @@ export default function ProductSection({
                     xs={6}
                     sm={4}
                     md={3}
-                    lg={3}
-                    xl={2}
+                    lg={2}
                     key={isLoading ? product : product.link}
                   >
                     <Link
@@ -97,17 +112,45 @@ export default function ProductSection({
                         }}
                       >
                         {isLoading ? (
-                          <Skeleton height={200} width="100%" />
+                          <Skeleton height={150} width="100%" />
                         ) : (
-                          <Stack mt={2}>
-                            <img src={product.image} alt={product.name} />
-                          </Stack>
+                          <Box
+                            mt={1}
+                            sx={{
+                              height: 150,
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <LazyLoadImage
+                              src={product.image}
+                              alt={product.name}
+                              style={{
+                                objectFit: "contain",
+                                width: "100%",
+                                height: "100%",
+                              }}
+                            />
+                          </Box>
                         )}
-                        <Box px={2} pb={2}>
+                        <Box px={2} pb={1}>
                           {isLoading ? (
                             <Skeleton count={1} />
                           ) : (
-                            <Typography variant="body2" component="p" py={1}>
+                            <Typography
+                              variant="body2"
+                              component="p"
+                              my={1}
+                              sx={{
+                                maxLines: 2,
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                display: "-webkit-box",
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: "vertical",
+                              }}
+                            >
                               {product.name}
                             </Typography>
                           )}
@@ -134,11 +177,7 @@ export default function ProductSection({
                               {isLoading ? (
                                 <Skeleton width={100} />
                               ) : (
-                                <Typography
-                                  variant="subtitle1"
-                                  component="h2"
-                                  fontWeight={600}
-                                >
+                                <Typography component="h2" fontWeight={600}>
                                   {product.price.currency}
                                   {product.price.amount ??
                                     product.price?.amount_range}

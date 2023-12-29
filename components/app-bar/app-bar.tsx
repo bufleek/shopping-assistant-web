@@ -1,60 +1,34 @@
 import Image from "next/image";
-import AuthActions from "./auth-actions";
+import { Box, Container, Link, Stack } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 
 export default function AppBar() {
-    const isLoggedIn = false;
+  const isLoggedIn = false;
+  const query = useSearchParams().get("query");
 
   return (
-    <div className="bg-inherit">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="/">
-              <span className="sr-only">Logo</span>
-              <Image src="/logo.svg" alt="Logo" width={40} height={40} />
-            </a>
-          </div>
-          <nav className="hidden md:flex space-x-10">
-            <a
-              href="#"
-              className="text-base font-medium text-gray-900 hover:text-gray-500"
-            >
-              Explore
-            </a>
-
-            <a
-              href="#"
-              className="text-base font-medium text-gray-900 hover:text-gray-500"
-            >
-              Supported platforms
-            </a>
-
-            <a
-              href="#"
-              className="text-base font-medium text-gray-900 hover:text-gray-500"
-            >
-              How it works
-            </a>
-
-            <a
-              href="#"
-              className="text-base font-medium text-gray-900 hover:text-gray-500"
-            >
-              About us
-            </a>
-
-            <a
-              href="#"
-              className="text-base font-medium text-gray-900 hover:text-gray-500"
-            >
-              Contact us
-            </a>
-          </nav>
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <AuthActions />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container maxWidth="lg" className="bg-inherit">
+      <Stack
+        py={1.5} direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+        <Box height={40} width={40}>
+          <Link href="/">
+            <span className="sr-only">Logo</span>
+            <Image src="/logo.svg" alt="Logo" width={40} height={40} />
+          </Link>
+        </Box>
+        <form
+          action="/browse"
+          method="GET"
+        >
+          <input
+            defaultValue={query || ""}
+            name="query"
+            type="search"
+            placeholder="Search"
+            className="rounded px-4 py-2 bg-white text-black outline-none"
+          />
+        </form>
+      </Stack>
+    </Container>
   );
 }

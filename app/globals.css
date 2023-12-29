@@ -18,14 +18,23 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  height: 100vh;
+  background:  rgb(var(--background-start-rgb));
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
   width: 100vw;
+}
+
+#landing {
+  background: linear-gradient(180deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+}
+
+.bg-start {
+  background: rgb(var(--background-start-rgb));
+}
+
+.bg-end {
+  background: rgb(var(--background-end-rgb));
 }
 
 .pointer {
