@@ -2,9 +2,9 @@
 
 import { useContext } from "react";
 import { useSearchParams } from "next/navigation";
-import AppBar from "@/components/app-bar/app-bar";
-import { AppConfigsContext } from "@/components/providers";
-import ProductSection from "@/components/products/product-section";
+import AppBar from "../../components/app-bar/app-bar";
+import { AppConfigsContext } from "../../components/providers";
+import ProductSection from "../../components/products/product-section";
 import { Box, Stack } from "@mui/material";
 
 export default function Browse() {
