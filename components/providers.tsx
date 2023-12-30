@@ -1,6 +1,6 @@
 "use client";
 
-import { AppConfigs } from "@/data/models/app_configs";
+import { AppConfigs } from "../data/models/app_configs";
 import React, { createContext, useState } from "react";
 
 export const AppConfigsContext = createContext<{ appConfigs: AppConfigs | undefined | null }>({ appConfigs: undefined });

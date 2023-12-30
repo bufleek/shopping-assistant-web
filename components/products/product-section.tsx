@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Platform } from "@/data/models/app_configs";
-import { Product } from "@/data/models/products";
-import { getProducts } from "@/data/models/products";
+import { Platform } from "../../data/models/app_configs";
+import { Product } from "../../data/models/products";
+import { getProducts } from "../../data/models/products";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
