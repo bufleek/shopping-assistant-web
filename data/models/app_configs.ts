@@ -1,6 +1,6 @@
-import { collection, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
-import { db } from "@/lib/firebase";
+import { db } from "../../lib/firebase";
 
 export interface AppConfigs {
   data_source: DataSource;
