@@ -1,13 +1,18 @@
 "use client";
+import { logEvent, EventNames, EventParams, SearchLocations } from "@/lib/analytics";
 
 export default function SearchInput({initialValue = ""}){
     function handleSubmit(e: React.FormEvent<HTMLFormElement>){
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
-      const query = formData.get("query");
-      if(query){
-        window.location.href = `/browse?query=${query}`;
-      }
+      const newQuery = formData.get("query")?.toString()?.trim();
+    if (newQuery && newQuery) {
+      logEvent(EventNames.SEARCH, {
+        [EventParams.SEARCH_TERM]: newQuery,
+        [EventParams.SEARCH_LOCATION]: SearchLocations.SEARCH_RESULTS,
+      });
+      window.location.href = `/browse?query=${newQuery}`;
+    }
     }
   
     return (

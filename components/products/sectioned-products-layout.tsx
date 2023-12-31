@@ -15,7 +15,6 @@ export default function SectionedProductsLayout() {
   const isInitialized = useRef(false);
 
   useEffect(() => {
-    console.log("useEffect SectionedProductsLayout");
     if (!isInitialized.current && appConfigs) {
       isInitialized.current = true;
       setPlatforms(shuffle(appConfigs.data_source.platforms));

@@ -50,7 +50,6 @@ export default function ProductSection({
   }, [query, base_url, platform])
 
   useEffect(() => {
-    console.log("useEffect ProductSection");
     if (!isInitialized.current) {
       isInitialized.current = true;
       handleGetProducts();
