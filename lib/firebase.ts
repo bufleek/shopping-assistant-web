@@ -12,6 +12,6 @@ const firebaseConfig = {
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
-const db = getFirestore(app);
+const db = getFirestore(app, process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID || "(default)");
 
 export { app, db };
