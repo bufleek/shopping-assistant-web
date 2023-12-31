@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: process.env.APP_NAME,
   description: process.env.APP_DESCRIPTION,
+  keywords: process.env.APP_KEYWORDS,
 }
 
 export default async function RootLayout({

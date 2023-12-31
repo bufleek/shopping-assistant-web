@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Platform } from "../../data/models/app_configs";
 import { Product } from "../../data/models/products";
 import { getProducts } from "../../data/models/products";
@@ -25,6 +25,7 @@ export default function ProductSection({
   query: string | null;
   base_url: string | null;
 }) {
+  const isInitialized = useRef(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,8 +47,11 @@ export default function ProductSection({
   }
 
   useEffect(() => {
-    handleGetProducts();
-  }, []);
+    if (!isInitialized.current) {
+      isInitialized.current = true;
+      handleGetProducts();
+    }
+  }, [platform, query, base_url]);
 
   return (
     <>
@@ -158,8 +162,8 @@ export default function ProductSection({
                               {isLoading ? (
                                 <Skeleton width={100} />
                               ) : (
-                                product.old_price && (
-                                  <Typography
+                                 (
+                                  product.old_price && <Typography
                                     variant="caption"
                                     component="span"
                                     sx={{
@@ -167,7 +171,7 @@ export default function ProductSection({
                                       color: "text.disabled",
                                     }}
                                   >
-                                    {product.price.currency}
+                                    {product.old_price.currency}
                                     {product.old_price.amount ??
                                       product.old_price?.amount_range}
                                   </Typography>
@@ -176,7 +180,7 @@ export default function ProductSection({
                               {isLoading ? (
                                 <Skeleton width={100} />
                               ) : (
-                                <Typography component="h2" fontWeight={600}>
+                                product.price && <Typography component="h2" fontWeight={600}>
                                   {product.price.currency}
                                   {product.price.amount ??
                                     product.price?.amount_range}

@@ -920,7 +920,7 @@ export interface Product {
   link: string;
   name: string;
   platform: string;
-  price: Price;
+  price: Price | undefined | null;
   old_price: Price | undefined | null;
   rating: number | undefined | null;
   reviews: number | undefined | null;
