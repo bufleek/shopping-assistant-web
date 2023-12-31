@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Platform } from "../../data/models/app_configs";
 import { Product } from "../../data/models/products";
 import { getProducts } from "../../data/models/products";
@@ -31,7 +31,7 @@ export default function ProductSection({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function handleGetProducts() {
+  const handleGetProducts = useCallback(() => {
     if (query && base_url) {
       setIsLoading(true);
       setError(null);
@@ -45,14 +45,15 @@ export default function ProductSection({
           setIsLoading(false);
         });
     }
-  }
+  }, [query, base_url, platform])
 
   useEffect(() => {
+    console.log("useEffect ProductSection");
     if (!isInitialized.current) {
       isInitialized.current = true;
       handleGetProducts();
     }
-  }, [platform, query, base_url]);
+  }, [platform, query, base_url, handleGetProducts]);
 
   return (
     <>
@@ -95,14 +96,14 @@ export default function ProductSection({
           ) : (
             <Grid container spacing={1}>
               {(isLoading ? Array.from(new Array(20)) : products).map(
-                (product) => (
+                (product, index) => (
                   <Grid
                     item
                     xs={6}
                     sm={4}
                     md={3}
                     lg={2}
-                    key={isLoading ? product : product.link}
+                    key={product?.link ?? index}
                   >
                     <Link
                       href={!isLoading && product ? product.link : ""}

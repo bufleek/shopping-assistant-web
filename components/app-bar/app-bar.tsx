@@ -1,9 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Box, Container, Link, Stack } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 
 export default function AppBar() {
-  const isLoggedIn = false;
   const query = useSearchParams().get("query");
 
   return (

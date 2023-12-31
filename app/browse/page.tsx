@@ -1,16 +1,14 @@
-"use client";
-
-import { useContext } from "react";
-import { useSearchParams } from "next/navigation";
 import AppBar from "../../components/app-bar/app-bar";
-import { AppConfigsContext } from "../../components/providers";
-import ProductSection from "../../components/products/product-section";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import buildMetadata, { defaultMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
+import SectionedProductsLayout from "@/components/products/sectioned-products-layout";
+
+export const metadata: Metadata = buildMetadata({
+  title: `${defaultMetadata.title} | Browse`,
+});
 
 export default function Browse() {
-  const query = useSearchParams().get("query");
-  const { appConfigs } = useContext(AppConfigsContext);
-
   return (
     <div
       style={{
@@ -19,31 +17,20 @@ export default function Browse() {
         gridTemplateRows: "max-content 1fr",
       }}
     >
-      <Box className="bg-start" sx={{
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}>
+      <Box
+        className="bg-start"
+        sx={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+        }}
+      >
         <AppBar />
       </Box>
 
-      <Stack
-        direction="column"
-        bgcolor="white"
-        height="100%"
-        pb={4}
-      >
-        {appConfigs && appConfigs.data_source.platforms.map((platform: any) => {
-            return (
-              <ProductSection
-                key={platform.key}
-                platform={platform}
-                query={query}
-                base_url={appConfigs.data_source.base_url}
-              />
-            );
-          })}
-      </Stack>
+      <Box bgcolor="white" height="100%" pb={4}>
+        <SectionedProductsLayout />
+      </Box>
     </div>
   );
 }
