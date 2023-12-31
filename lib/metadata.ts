@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const defaultMetadata: Metadata = {
-  title: process.env.APP_NAME,
-  description: process.env.APP_DESCRIPTION,
-  keywords: process.env.APP_KEYWORDS,
+  title: process.env.NEXT_PUBLIC_APP_NAME,
+  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
+  keywords: process.env.NEXT_PUBLIC_APP_KEYWORDS,
 };
 
 export const buildMetadata = (metadata: Metadata = defaultMetadata) => {
