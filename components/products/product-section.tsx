@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { formatNumber } from "@/utils/formatters";
 
 export default function ProductSection({
   platform,
@@ -174,7 +175,7 @@ export default function ProductSection({
                                     }}
                                   >
                                     {product.old_price.currency}
-                                    {product.old_price.amount ??
+                                    {product.old_price.amount ? formatNumber(product.old_price.amount) :
                                       product.old_price?.amount_range}
                                   </Typography>
                                 )
@@ -184,7 +185,7 @@ export default function ProductSection({
                               ) : (
                                 product.price && <Typography component="h2" fontWeight={600}>
                                   {product.price.currency}
-                                  {product.price.amount ??
+                                  {product.price.amount ? formatNumber(product.price.amount) :
                                     product.price?.amount_range}
                                 </Typography>
                               )}
