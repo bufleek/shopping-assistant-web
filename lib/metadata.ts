@@ -6,11 +6,9 @@ export const defaultMetadata: Metadata = {
   keywords: process.env.APP_KEYWORDS,
 };
 
-const buildMetadata = (metadata: Metadata = defaultMetadata) => {
+export const buildMetadata = (metadata: Metadata = defaultMetadata) => {
   return {
     ...defaultMetadata,
     ...metadata,
   };
 };
-
-export default buildMetadata;

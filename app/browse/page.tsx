@@ -1,12 +1,14 @@
-import AppBar from "../../components/app-bar/app-bar";
+"use client";
+
+import AppBar from "@/components/app-bar/app-bar";
 import { Box } from "@mui/material";
-import buildMetadata, { defaultMetadata } from "@/lib/metadata";
-import { Metadata } from "next";
+// import { defaultMetadata, buildMetadata } from "@/lib/metadata";
+// import { Metadata } from "next";
 import SectionedProductsLayout from "@/components/products/sectioned-products-layout";
 
-export const metadata: Metadata = buildMetadata({
-  title: `${defaultMetadata.title} | Browse`,
-});
+// export const metadata: Metadata = buildMetadata({
+//   title: `${defaultMetadata.title} | Browse`,
+// });
 
 export default function Browse() {
   return (

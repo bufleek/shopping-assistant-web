@@ -1,7 +1,7 @@
 "use client";
 
 import { AppConfigs } from "../data/models/app_configs";
-import React, { createContext, useState } from "react";
+import React, { createContext, useRef } from "react";
 
 export const AppConfigsContext = createContext<{ appConfigs: AppConfigs | undefined | null }>({ appConfigs: undefined });
 
@@ -12,10 +12,10 @@ export function AppConfigsProvider({
   children: React.ReactNode;
   value: AppConfigs | undefined | null;
 }) {
-  const [appConfigs, setAppConfigs] = useState(value);
+  const appConfigs = useRef(value);
 
   return (
-    <AppConfigsContext.Provider value={{ appConfigs }}>
+    <AppConfigsContext.Provider value={{ appConfigs: appConfigs.current }}>
       {children}
     </AppConfigsContext.Provider>
   );

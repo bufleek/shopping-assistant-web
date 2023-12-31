@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppConfigsContext } from "@/components/providers";
-import ProductSection from "../../components/products/product-section";
+import ProductSection from "@/components/products/product-section";
 import { Stack } from "@mui/material";
 import { shuffle } from "@/utils/arrays";
 import { Platform } from "@/data/models/app_configs";

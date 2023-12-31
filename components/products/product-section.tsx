@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Platform } from "../../data/models/app_configs";
 import { Product } from "../../data/models/products";
