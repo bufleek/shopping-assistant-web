@@ -13,7 +13,7 @@ import { useEffect } from "react";
 
 export default function Page() {
   useEffect(() => {
-    document.title = `${defaultMetadata.title} | Browse`;
+    document.title = `Browse | ${defaultMetadata.title}`;
   }
   , []);
 
