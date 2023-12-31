@@ -4,6 +4,7 @@ import "./globals.css";
 import { fetchAppConfigs } from "../data/models/app_configs";
 import { AppConfigsProvider } from "../components/providers";
 import { buildMetadata } from "@/lib/metadata";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppConfigsProvider value={appConfigs}>{children}</AppConfigsProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

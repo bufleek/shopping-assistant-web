@@ -1,5 +1,4 @@
 import SearchInput from "../components/products/search-input";
-import { metadata } from "./layout";
 import { Stack } from "@mui/material";
 import Image from "next/image";
 
