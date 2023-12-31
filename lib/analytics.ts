@@ -1,8 +1,7 @@
 import { app } from "@/lib/firebase";
 import { getAnalytics, logEvent as logFirebaseEvent, isSupported } from "firebase/analytics";
 
-const environment = process.env.NODE_ENV || 'development';
-const shouldLogEvents = environment === 'production';
+const shouldLogEvents = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true";
 const analytics = isSupported().then(yes => {
     if (yes && shouldLogEvents) {
         return getAnalytics(app);
