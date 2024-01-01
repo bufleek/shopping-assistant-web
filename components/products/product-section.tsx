@@ -19,6 +19,7 @@ import {
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { formatNumber } from "@/utils/formatters";
+import { logEvent, EventNames } from "@/lib/analytics";
 
 export default function ProductSection({
   platform,
@@ -56,6 +57,18 @@ export default function ProductSection({
       handleGetProducts();
     }
   }, [platform, query, base_url, handleGetProducts]);
+
+  const handleProductClick = (product: Product) => {
+    logEvent(
+      EventNames.PRODUCT_CLICK,
+      {
+        platform: platform.name,
+        query,
+        product_name: product.name,
+        product_link: product.link,
+      },
+    )
+  }
 
   return (
     <>
@@ -111,6 +124,7 @@ export default function ProductSection({
                       href={!isLoading && product ? product.link : ""}
                       underline="none"
                       target="_blank"
+                      onClick={() => handleProductClick(product)}
                     >
                       <Card
                         sx={{
