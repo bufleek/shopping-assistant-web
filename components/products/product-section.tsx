@@ -58,6 +58,28 @@ export default function ProductSection({
     }
   }, [platform, query, base_url, handleGetProducts]);
 
+  const handleErroredRetry = () => {
+    logEvent(
+      EventNames.ERRORED_SEARCH_RETRY,
+      {
+        platform: platform.name,
+        query,
+      },
+    );
+    handleGetProducts();
+  }
+
+  const handleEmptyRetry = () => {
+    logEvent(
+      EventNames.EMPTY_SEARCH_RETRY,
+      {
+        platform: platform.name,
+        query,
+      },
+    );
+    handleGetProducts();
+  }
+
   const handleProductClick = (product: Product) => {
     logEvent(
       EventNames.PRODUCT_CLICK,
@@ -66,6 +88,17 @@ export default function ProductSection({
         query,
         product_name: product.name,
         product_link: product.link,
+      },
+    )
+  }
+
+  const handleVisitPlatformClick = (source: 'error_state' | 'empty_state') => {
+    logEvent(
+      EventNames.VISIT_PLATFORM,
+      {
+        platform: platform.name,
+        current_query: query,
+        source,
       },
     )
   }
@@ -99,14 +132,26 @@ export default function ProductSection({
               <Typography component="h2">
                 Failed to load{" "}
                 <span>
-                  <Link href={platform.url} target="_blank" underline="always">
+                  <Link href={platform.url} target="_blank" underline="always" onClick={() => handleVisitPlatformClick("error_state")}>
                     {platform.name}
                   </Link>
                 </span>{" "}
                 products.
               </Typography>
               <Typography component="caption">Error: {error}</Typography>
-              <Button onClick={handleGetProducts}>Retry</Button>
+              <Button onClick={handleErroredRetry}>Retry</Button>
+            </Stack>
+          ) : (!isLoading && products.length == 0)? (
+            <Stack direction="column" alignItems="center" spacing={2}>
+              <Typography component="h2">
+                No products found on{" "}
+                <span>
+                  <Link href={platform.url} target="_blank" underline="always" onClick={() => handleVisitPlatformClick("empty_state")}>
+                    {platform.name}
+                  </Link>
+                </span>
+              </Typography>
+              <Button onClick={handleEmptyRetry}>Retry</Button>
             </Stack>
           ) : (
             <Grid container spacing={1}>

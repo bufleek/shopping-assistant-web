@@ -22,10 +22,10 @@ export default function Home() {
       <main className="h-full">
         <div className="flex justify-center align-center flex-col py-20 h-full">
           <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-center">
-            Explore multiple online stores with one search
+            Explore multiple online stores with one effortless search
           </h1>
           <h2 className="text-center text-lg mt-5">
-            We help you find the best products from multiple online stores in one place.
+            Unlocking a new universe of shopping...
           </h2>
           <div className="mt-10">
             <SearchInput />
