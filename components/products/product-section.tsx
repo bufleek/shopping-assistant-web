@@ -92,6 +92,17 @@ export default function ProductSection({
     )
   }
 
+  const handleVisitPlatformClick = (source: 'error_state' | 'empty_state') => {
+    logEvent(
+      EventNames.VISIT_PLATFORM,
+      {
+        platform: platform.name,
+        current_query: query,
+        source,
+      },
+    )
+  }
+
   return (
     <>
       <Container
@@ -121,7 +132,7 @@ export default function ProductSection({
               <Typography component="h2">
                 Failed to load{" "}
                 <span>
-                  <Link href={platform.url} target="_blank" underline="always">
+                  <Link href={platform.url} target="_blank" underline="always" onClick={() => handleVisitPlatformClick("error_state")}>
                     {platform.name}
                   </Link>
                 </span>{" "}
@@ -135,7 +146,7 @@ export default function ProductSection({
               <Typography component="h2">
                 No products found on{" "}
                 <span>
-                  <Link href={platform.url} target="_blank" underline="always">
+                  <Link href={platform.url} target="_blank" underline="always" onClick={() => handleVisitPlatformClick("empty_state")}>
                     {platform.name}
                   </Link>
                 </span>
