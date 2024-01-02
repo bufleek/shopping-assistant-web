@@ -37,7 +37,9 @@ export default function Page() {
           <AppBar />
         </Box>
 
-        <Box bgcolor="white" height="100%" pb={4}>
+        <Box className="text-black" bgcolor="white" pb={4} sx={{
+          minHeight: "100vh",
+        }}>
           <SectionedProductsLayout />
         </Box>
       </div>
