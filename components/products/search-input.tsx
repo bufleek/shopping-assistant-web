@@ -9,7 +9,7 @@ export default function SearchInput({initialValue = ""}){
     if (newQuery && newQuery) {
       logEvent(EventNames.SEARCH, {
         [EventParams.SEARCH_TERM]: newQuery,
-        [EventParams.SEARCH_LOCATION]: SearchLocations.SEARCH_RESULTS,
+        [EventParams.SEARCH_LOCATION]: SearchLocations.HOME,
       });
       window.location.href = `/browse?query=${newQuery}`;
     }
