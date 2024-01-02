@@ -46,8 +46,8 @@ export const EventNames = {
   SEARCH: "Search",
   SEARCH_REQUEST: "Search_Request",
   PRODUCT_CLICK: "Product_Click",
-  ERRORED_SEARCH_RETRY: "Errored_SEARCH_Retry",
-  EMPTY_SEARCH_RETRY: "Empty_SEARCH_Retry",
+  ERRORED_SEARCH_RETRY: "Errored_Search_Retry",
+  EMPTY_SEARCH_RETRY: "Empty_Search_Retry",
 };
 
 export type EventNames = typeof EventNames;
