@@ -1,4 +1,4 @@
-# [Shopping Assistant Web](https:www.shoppingassistant.co.ke)
+# [Shopping Assistant Web](https://www.shoppingassistant.co.ke)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
