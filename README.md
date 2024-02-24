@@ -1,6 +1,6 @@
 # [Shopping Assistant Web](https:www.shoppingassistant.co.ke)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bufleek/shopping-assistant-web/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A [Next.js](https://nextjs.org/) frontend project for [shopping assistant](https://www.shoppingassistant.co.ke) that allow its users to find products from multiple ecommerce platforms in one place with one search.
 
